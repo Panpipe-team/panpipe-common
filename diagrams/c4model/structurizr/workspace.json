@@ -1,0 +1,491 @@
+{
+  "configuration" : { },
+  "description" : "Description",
+  "documentation" : { },
+  "id" : 1,
+  "lastModifiedAgent" : "structurizr-ui",
+  "lastModifiedDate" : "2024-10-13T18:23:38Z",
+  "model" : {
+    "deploymentNodes" : [ {
+      "children" : [ {
+        "containerInstances" : [ {
+          "containerId" : "3",
+          "deploymentGroups" : [ "Default" ],
+          "environment" : "Production",
+          "id" : "15",
+          "instanceId" : 1,
+          "properties" : {
+            "structurizr.dsl.identifier" : "spainstance"
+          },
+          "relationships" : [ {
+            "description" : "Makes API calls to",
+            "destinationId" : "22",
+            "id" : "23",
+            "linkedRelationshipId" : "11",
+            "sourceId" : "15",
+            "technology" : "HTTPS/JSON"
+          }, {
+            "description" : "Visits website and makes API calls using",
+            "destinationId" : "17",
+            "id" : "30",
+            "properties" : {
+              "structurizr.dsl.identifier" : "c0374695-e0da-47e5-aeda-10e5e63a8163"
+            },
+            "sourceId" : "15",
+            "tags" : "Relationship",
+            "technology" : "HTTPS/JSON"
+          } ],
+          "tags" : "Container Instance"
+        } ],
+        "environment" : "Production",
+        "id" : "14",
+        "instances" : "1",
+        "name" : "Web Browser",
+        "properties" : {
+          "structurizr.dsl.identifier" : "643e241b-e301-4551-986d-e467abe5bcbe"
+        },
+        "tags" : "Element,Deployment Node",
+        "technology" : "Chrome, Firefox, Safari or Edge"
+      } ],
+      "environment" : "Production",
+      "id" : "13",
+      "instances" : "1",
+      "name" : "Customer's computer",
+      "properties" : {
+        "structurizr.dsl.identifier" : "5b64b225-e160-4f80-8e08-1bf88151b3be"
+      },
+      "tags" : "Element,Deployment Node",
+      "technology" : "Microsoft Windows, Apple maxOS or Linux"
+    }, {
+      "children" : [ {
+        "containerInstances" : [ {
+          "containerId" : "4",
+          "deploymentGroups" : [ "Default" ],
+          "environment" : "Production",
+          "id" : "19",
+          "instanceId" : 1,
+          "properties" : {
+            "structurizr.dsl.identifier" : "webappinstance"
+          },
+          "relationships" : [ {
+            "description" : "Delivers to the customer's web browser",
+            "destinationId" : "15",
+            "id" : "20",
+            "linkedRelationshipId" : "10",
+            "sourceId" : "19"
+          } ],
+          "tags" : "Container Instance"
+        } ],
+        "environment" : "Production",
+        "id" : "18",
+        "instances" : "1",
+        "name" : "WebApp Container",
+        "properties" : {
+          "structurizr.dsl.identifier" : "5b93ca63-253d-49ef-bad6-1648838edc3d"
+        },
+        "tags" : "Element,Deployment Node",
+        "technology" : "Docker"
+      }, {
+        "containerInstances" : [ {
+          "containerId" : "5",
+          "deploymentGroups" : [ "Default" ],
+          "environment" : "Production",
+          "id" : "22",
+          "instanceId" : 1,
+          "properties" : {
+            "structurizr.dsl.identifier" : "apiappinstance"
+          },
+          "relationships" : [ {
+            "description" : "Reads from and writes to",
+            "destinationId" : "26",
+            "id" : "27",
+            "linkedRelationshipId" : "12",
+            "sourceId" : "22",
+            "technology" : "SQL/TCP"
+          } ],
+          "tags" : "Container Instance"
+        } ],
+        "environment" : "Production",
+        "id" : "21",
+        "instances" : "1",
+        "name" : "ApiApp Container",
+        "properties" : {
+          "structurizr.dsl.identifier" : "da6659b9-add6-4dc1-af99-b087598c451e"
+        },
+        "tags" : "Element,Deployment Node",
+        "technology" : "Docker"
+      }, {
+        "children" : [ {
+          "containerInstances" : [ {
+            "containerId" : "6",
+            "deploymentGroups" : [ "Default" ],
+            "environment" : "Production",
+            "id" : "26",
+            "instanceId" : 1,
+            "properties" : {
+              "structurizr.dsl.identifier" : "69810adf-047b-4aeb-97a9-f5e86eb0f977"
+            },
+            "tags" : "Container Instance"
+          } ],
+          "environment" : "Production",
+          "id" : "25",
+          "instances" : "1",
+          "name" : "PostgreSQL Server",
+          "properties" : {
+            "structurizr.dsl.identifier" : "67657f4d-a2b4-4c85-af46-987d61c66a21"
+          },
+          "tags" : "Element,Deployment Node"
+        } ],
+        "environment" : "Production",
+        "id" : "24",
+        "instances" : "1",
+        "name" : "DB Container",
+        "properties" : {
+          "structurizr.dsl.identifier" : "fe9934a8-5c5f-4532-8c3c-49972207ccf3"
+        },
+        "tags" : "Element,Deployment Node",
+        "technology" : "Docker"
+      } ],
+      "environment" : "Production",
+      "id" : "16",
+      "infrastructureNodes" : [ {
+        "description" : "Forwards requests to corresponging servers",
+        "environment" : "Production",
+        "id" : "17",
+        "name" : "Reverse proxy",
+        "properties" : {
+          "structurizr.dsl.identifier" : "nginx"
+        },
+        "relationships" : [ {
+          "description" : "Forwards website visit calls to",
+          "destinationId" : "19",
+          "id" : "28",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ffebd6c8-1c26-4896-9158-cbe56cebc413"
+          },
+          "sourceId" : "17",
+          "tags" : "Relationship",
+          "technology" : "HTTP/JSON"
+        }, {
+          "description" : "Forwards API calls to",
+          "destinationId" : "22",
+          "id" : "29",
+          "properties" : {
+            "structurizr.dsl.identifier" : "e14a7c37-459d-47f0-827b-3f904f20d961"
+          },
+          "sourceId" : "17",
+          "tags" : "Relationship",
+          "technology" : "HTTP/JSON"
+        } ],
+        "tags" : "Element,Infrastructure Node",
+        "technology" : "nginx"
+      } ],
+      "instances" : "1",
+      "name" : "Student's VPS",
+      "properties" : {
+        "structurizr.dsl.identifier" : "vps"
+      },
+      "tags" : "Element,Deployment Node",
+      "technology" : "Ubuntu 22.04 LTS"
+    } ],
+    "people" : [ {
+      "id" : "1",
+      "location" : "Unspecified",
+      "name" : "Customer",
+      "properties" : {
+        "structurizr.dsl.identifier" : "u"
+      },
+      "relationships" : [ {
+        "description" : "Views and uses habit boards using",
+        "destinationId" : "3",
+        "id" : "7",
+        "properties" : {
+          "structurizr.dsl.identifier" : "237cafb1-32be-4aad-8e6d-588adc5ece96"
+        },
+        "sourceId" : "1",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Views and uses habit boards using",
+        "destinationId" : "2",
+        "id" : "8",
+        "linkedRelationshipId" : "7",
+        "sourceId" : "1"
+      }, {
+        "description" : "Visits Panpipe website using",
+        "destinationId" : "4",
+        "id" : "9",
+        "properties" : {
+          "structurizr.dsl.identifier" : "2dc23303-811a-4fa7-be7d-2c9d41316c18"
+        },
+        "sourceId" : "1",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Person"
+    } ],
+    "softwareSystems" : [ {
+      "containers" : [ {
+        "description" : "Provides Panpipe functionality to customers via their web browser",
+        "documentation" : { },
+        "id" : "3",
+        "name" : "Single-Page Application",
+        "properties" : {
+          "structurizr.dsl.identifier" : "spa"
+        },
+        "relationships" : [ {
+          "description" : "Makes API calls to",
+          "destinationId" : "5",
+          "id" : "11",
+          "properties" : {
+            "structurizr.dsl.identifier" : "apicallsrel"
+          },
+          "sourceId" : "3",
+          "tags" : "Relationship",
+          "technology" : "HTTPS/JSON"
+        } ],
+        "tags" : "Element,Container,Browser",
+        "technology" : "TypeScript + React"
+      }, {
+        "description" : "Delivers the static content and Panpipe single-page application",
+        "documentation" : { },
+        "id" : "4",
+        "name" : "Web Application",
+        "properties" : {
+          "structurizr.dsl.identifier" : "webapp"
+        },
+        "relationships" : [ {
+          "description" : "Delivers to the customer's web browser",
+          "destinationId" : "3",
+          "id" : "10",
+          "properties" : {
+            "structurizr.dsl.identifier" : "webcallsrel"
+          },
+          "sourceId" : "4",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "Node JS"
+      }, {
+        "description" : "Provides Panpipe functionality via a JSON/HTTPS API",
+        "documentation" : { },
+        "id" : "5",
+        "name" : "Api Application",
+        "properties" : {
+          "structurizr.dsl.identifier" : "apiapp"
+        },
+        "relationships" : [ {
+          "description" : "Reads from and writes to",
+          "destinationId" : "6",
+          "id" : "12",
+          "properties" : {
+            "structurizr.dsl.identifier" : "fa343d6b-61f5-4980-b77f-3ec2d4c349ea"
+          },
+          "sourceId" : "5",
+          "tags" : "Relationship",
+          "technology" : "SQL/TCP"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : ".Net"
+      }, {
+        "description" : "Stores users, habits, habit boards information etc.",
+        "documentation" : { },
+        "id" : "6",
+        "name" : "Database",
+        "properties" : {
+          "structurizr.dsl.identifier" : "database"
+        },
+        "tags" : "Element,Container,Database",
+        "technology" : "PostgreSQL Schema"
+      } ],
+      "description" : "Allows customers to view, create and edit habits and habit boards",
+      "documentation" : { },
+      "id" : "2",
+      "location" : "Unspecified",
+      "name" : "Panpipe",
+      "properties" : {
+        "structurizr.dsl.identifier" : "s"
+      },
+      "tags" : "Element,Software System"
+    } ]
+  },
+  "name" : "Name",
+  "properties" : {
+    "structurizr.dsl" : "d29ya3NwYWNlICJOYW1lIiAiRGVzY3JpcHRpb24iIHsKCiAgICBtb2RlbCB7CiAgICAgICAgdSA9IHBlcnNvbiAiQ3VzdG9tZXIiCgogICAgICAgIHMgPSBzb2Z0d2FyZVN5c3RlbSAiUGFucGlwZSIgIkFsbG93cyBjdXN0b21lcnMgdG8gdmlldywgY3JlYXRlIGFuZCBlZGl0IGhhYml0cyBhbmQgaGFiaXQgYm9hcmRzIiB7CiAgICAgICAgICAgIHNwYSA9IGNvbnRhaW5lciAiU2luZ2xlLVBhZ2UgQXBwbGljYXRpb24iICJQcm92aWRlcyBQYW5waXBlIGZ1bmN0aW9uYWxpdHkgdG8gY3VzdG9tZXJzIHZpYSB0aGVpciB3ZWIgYnJvd3NlciIiVHlwZVNjcmlwdCArIFJlYWN0IiAiQnJvd3NlciIgCiAgICAgICAgICAgIHdlYmFwcCA9IGNvbnRhaW5lciAiV2ViIEFwcGxpY2F0aW9uIiAiRGVsaXZlcnMgdGhlIHN0YXRpYyBjb250ZW50IGFuZCBQYW5waXBlIHNpbmdsZS1wYWdlIGFwcGxpY2F0aW9uIiAiTm9kZSBKUyIKICAgICAgICAgICAgYXBpYXBwID0gY29udGFpbmVyICJBcGkgQXBwbGljYXRpb24iICJQcm92aWRlcyBQYW5waXBlIGZ1bmN0aW9uYWxpdHkgdmlhIGEgSlNPTi9IVFRQUyBBUEkiICIuTmV0IgogICAgICAgICAgICBkYXRhYmFzZSA9IGNvbnRhaW5lciAiRGF0YWJhc2UiICJTdG9yZXMgdXNlcnMsIGhhYml0cywgaGFiaXQgYm9hcmRzIGluZm9ybWF0aW9uIGV0Yy4iICJQb3N0Z3JlU1FMIFNjaGVtYSIgIkRhdGFiYXNlIgogICAgICAgIH0KICAgICAgICAKICAgICAgICB1IC0+IHNwYSAiVmlld3MgYW5kIHVzZXMgaGFiaXQgYm9hcmRzIHVzaW5nIgogICAgICAgIHUgLT4gd2ViYXBwICJWaXNpdHMgUGFucGlwZSB3ZWJzaXRlIHVzaW5nIgogICAgICAgIHdlYkNhbGxzUmVsID0gd2ViYXBwIC0+IHNwYSAiRGVsaXZlcnMgdG8gdGhlIGN1c3RvbWVyJ3Mgd2ViIGJyb3dzZXIiCiAgICAgICAgYXBpQ2FsbHNSZWwgPSBzcGEgLT4gYXBpYXBwICJNYWtlcyBBUEkgY2FsbHMgdG8iICJIVFRQUy9KU09OIgogICAgICAgIGFwaWFwcCAtPiBkYXRhYmFzZSAiUmVhZHMgZnJvbSBhbmQgd3JpdGVzIHRvIiAiU1FML1RDUCIKCiAgICAgICAgcHJvZHVjdGlvbiA9IGRlcGxveW1lbnRFbnZpcm9ubWVudCAiUHJvZHVjdGlvbiIgewogICAgICAgICAgICBkZXBsb3ltZW50Tm9kZSAiQ3VzdG9tZXIncyBjb21wdXRlciIgIiIgIk1pY3Jvc29mdCBXaW5kb3dzLCBBcHBsZSBtYXhPUyBvciBMaW51eCIgewogICAgICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgIldlYiBCcm93c2VyIiAiIiAiQ2hyb21lLCBGaXJlZm94LCBTYWZhcmkgb3IgRWRnZSIgewogICAgICAgICAgICAgICAgICAgIHNwYUluc3RhbmNlID0gY29udGFpbmVySW5zdGFuY2Ugc3BhCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIHZwcyA9IGRlcGxveW1lbnROb2RlICJTdHVkZW50J3MgVlBTIiAiIiAiVWJ1bnR1IDIyLjA0IExUUyIgewogICAgICAgICAgICAgICAgbmdpbnggPSBpbmZyYXN0cnVjdHVyZU5vZGUgIlJldmVyc2UgcHJveHkiICJGb3J3YXJkcyByZXF1ZXN0cyB0byBjb3JyZXNwb25naW5nIHNlcnZlcnMiICJuZ2lueCIgCgogICAgICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgIldlYkFwcCBDb250YWluZXIiICIiICJEb2NrZXIiIHsKICAgICAgICAgICAgICAgICAgICB3ZWJhcHBJbnN0YW5jZSA9IGNvbnRhaW5lckluc3RhbmNlIHdlYmFwcAogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGRlcGxveW1lbnROb2RlICJBcGlBcHAgQ29udGFpbmVyIiAiIiAiRG9ja2VyIiB7CiAgICAgICAgICAgICAgICAgICAgYXBpYXBwSW5zdGFuY2UgPSBjb250YWluZXJJbnN0YW5jZSBhcGlhcHAKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgIkRCIENvbnRhaW5lciIgIiIgIkRvY2tlciIgewogICAgICAgICAgICAgICAgICAgIGRlcGxveW1lbnROb2RlICJQb3N0Z3JlU1FMIFNlcnZlciIgewogICAgICAgICAgICAgICAgICAgICAgICBjb250YWluZXJJbnN0YW5jZSBkYXRhYmFzZQogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgIG5naW54IC0+IHdlYmFwcEluc3RhbmNlICJGb3J3YXJkcyB3ZWJzaXRlIHZpc2l0IGNhbGxzIHRvIiAiSFRUUC9KU09OIgogICAgICAgICAgICAgICAgbmdpbnggLT4gYXBpYXBwSW5zdGFuY2UgIkZvcndhcmRzIEFQSSBjYWxscyB0byIgIkhUVFAvSlNPTiIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgc3BhSW5zdGFuY2UgLT4gbmdpbnggIlZpc2l0cyB3ZWJzaXRlIGFuZCBtYWtlcyBBUEkgY2FsbHMgdXNpbmciICJIVFRQUy9KU09OIgogICAgICAgIH0KICAgIH0KCiAgICB2aWV3cyB7CiAgICAgICAgc3lzdGVtQ29udGV4dCBzIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGF1dG9MYXlvdXQgdGIKICAgICAgICB9CgogICAgICAgIGNvbnRhaW5lciBzIHsKICAgICAgICAgICAgaW5jbHVkZSAqICAgCiAgICAgICAgfQoKICAgICAgICBkZXBsb3ltZW50IHMgcHJvZHVjdGlvbiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBleGNsdWRlIHdlYkNhbGxzUmVsCiAgICAgICAgICAgIGV4Y2x1ZGUgYXBpQ2FsbHNSZWwKICAgICAgICB9CgogICAgICAgIHN0eWxlcyB7CiAgICAgICAgICAgIGVsZW1lbnQgIkVsZW1lbnQiIHsKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJQZXJzb24iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzA1NTI3ZAogICAgICAgICAgICAgICAgc2hhcGUgcGVyc29uCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiU29mdHdhcmUgU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwNjYyOTYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJDb250YWluZXIiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzA3NzNhZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkluZnJhc3RydWN0dXJlIE5vZGUiIHsKICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwNzczYWYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJCcm93c2VyIiB7CiAgICAgICAgICAgICAgICBzaGFwZSB3ZWJCcm93c2VyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgIHNoYXBlIGN5bGluZGVyCiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICB9Cgp9"
+  },
+  "views" : {
+    "configuration" : {
+      "branding" : { },
+      "lastSavedView" : "Deployment-001",
+      "metadataSymbols" : "SquareBrackets",
+      "styles" : {
+        "elements" : [ {
+          "color" : "#ffffff",
+          "tag" : "Element"
+        }, {
+          "background" : "#05527d",
+          "shape" : "Person",
+          "tag" : "Person"
+        }, {
+          "background" : "#066296",
+          "tag" : "Software System"
+        }, {
+          "background" : "#0773af",
+          "tag" : "Container"
+        }, {
+          "background" : "#0773af",
+          "tag" : "Infrastructure Node"
+        }, {
+          "shape" : "WebBrowser",
+          "tag" : "Browser"
+        }, {
+          "shape" : "Cylinder",
+          "tag" : "Database"
+        } ]
+      },
+      "terminology" : { }
+    },
+    "containerViews" : [ {
+      "dimensions" : {
+        "height" : 1921,
+        "width" : 1641
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 606,
+        "y" : 200
+      }, {
+        "id" : "3",
+        "x" : 960,
+        "y" : 839
+      }, {
+        "id" : "4",
+        "x" : 220,
+        "y" : 839
+      }, {
+        "id" : "5",
+        "x" : 971,
+        "y" : 1330
+      }, {
+        "id" : "6",
+        "x" : 220,
+        "y" : 1330
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "generatedKey" : true,
+      "key" : "Container-001",
+      "order" : 2,
+      "relationships" : [ {
+        "id" : "10"
+      }, {
+        "id" : "11"
+      }, {
+        "id" : "12"
+      }, {
+        "id" : "7"
+      }, {
+        "id" : "9"
+      } ],
+      "softwareSystemId" : "2"
+    } ],
+    "deploymentViews" : [ {
+      "dimensions" : {
+        "height" : 2313,
+        "width" : 1745
+      },
+      "elements" : [ {
+        "id" : "13",
+        "x" : 175,
+        "y" : 175
+      }, {
+        "id" : "14",
+        "x" : 175,
+        "y" : 175
+      }, {
+        "id" : "15",
+        "x" : 245,
+        "y" : 239
+      }, {
+        "id" : "16",
+        "x" : 175,
+        "y" : 175
+      }, {
+        "id" : "17",
+        "x" : 240,
+        "y" : 1024
+      }, {
+        "id" : "18",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "19",
+        "x" : 1035,
+        "y" : 1014
+      }, {
+        "id" : "21",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "22",
+        "x" : 240,
+        "y" : 1539
+      }, {
+        "id" : "24",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "25",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "26",
+        "x" : 1035,
+        "y" : 1539
+      } ],
+      "environment" : "Production",
+      "generatedKey" : true,
+      "key" : "Deployment-001",
+      "order" : 3,
+      "relationships" : [ {
+        "id" : "27"
+      }, {
+        "id" : "28"
+      }, {
+        "id" : "29"
+      }, {
+        "id" : "30"
+      } ],
+      "softwareSystemId" : "2"
+    } ],
+    "systemContextViews" : [ {
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "dimensions" : {
+        "height" : 1400,
+        "width" : 850
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 224,
+        "y" : 199
+      }, {
+        "id" : "2",
+        "x" : 199,
+        "y" : 899
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "generatedKey" : true,
+      "key" : "SystemContext-001",
+      "order" : 1,
+      "relationships" : [ {
+        "id" : "8"
+      } ],
+      "softwareSystemId" : "2"
+    } ]
+  }
+}
