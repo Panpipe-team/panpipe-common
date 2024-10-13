@@ -8,9 +8,9 @@ References:
 [Structurizr Lite](https://docs.structurizr.com/lite).
 
 To view diagrams via Structurizr UI from Structurizr Lite 
-start `diagrams/c4model/docker-compose.yml` and navigate to
+start [docker-compose](diagrams/c4model/docker-compose.yml) and navigate to
 `localhost:8080`.
 
 To edit diagrams study Structurizr DSL, edit 
-`diagrams/c4model/structurizr/workspace.dsl`, save changes
+[workspace.dsl](diagrams/c4model/structurizr/workspace.dsl), save changes
 and refresh Structurizr UI.
