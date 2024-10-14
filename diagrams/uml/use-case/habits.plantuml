@@ -1,0 +1,41 @@
+@startuml Panpipe Usecase Habits
+skinparam actorStyle awesome
+
+skinparam usecase {
+    BackgroundColor Pink
+    BackgroundColor<< MVP >> LightGreen
+}
+
+actor Пользователь as user
+
+rectangle "Привычки" {
+    usecase "Начать привычку" << MVP >> as startHabit
+    usecase "Выбрать шаблонную привычку" << MVP >> as chooseTemplateHabit
+    usecase "Создать привычку" as createHabit
+    usecase "Просмотреть список своих привычек" << MVP >> as listHabits
+    usecase "Просмотреть конкретную привычку" << MVP >> as viewHabit
+    usecase "Заполнить результат" << MVP >> as enterHabitResult
+    usecase "Добавить комментарий к результату" as enterHabitResultComment
+    usecase "Посмотреть свою статистику" as viewHabitPersonalStat
+    usecase "Посмотреть анонимную статистику" as viewHabitCommonStat
+}
+
+user -> startHabit
+chooseTemplateHabit -l-|> startHabit
+createHabit -l-|> startHabit
+
+user -> listHabits
+user -> viewHabit
+user -> enterHabitResult
+user -> enterHabitResultComment
+user -> viewHabitPersonalStat
+user -> viewHabitCommonStat
+
+chooseTemplateHabit -[hidden]d-> createHabit
+startHabit -[hidden]d-> listHabits
+listHabits -[hidden]d-> viewHabit
+viewHabit -[hidden]d-> enterHabitResult
+enterHabitResult -[hidden]d-> enterHabitResultComment
+enterHabitResultComment -[hidden]d-> viewHabitPersonalStat
+viewHabitPersonalStat -[hidden]d-> viewHabitCommonStat
+@enduml

@@ -1,0 +1,26 @@
+@startuml Panpipe Usecase Group
+skinparam actorStyle awesome
+
+skinparam usecase {
+    BackgroundColor Pink
+    BackgroundColor<< MVP >> LightGreen
+}
+
+actor Пользователь as user
+
+rectangle "Группа" {
+    usecase "Создать группу" << MVP >> as createGroup
+    usecase "Просмотреть список своих групп" << MVP >> as viewGroupList
+    usecase "Просмотреть конкретную группу" << MVP >> as chooseGroup
+    usecase "Выйти из группы" as exitGroup
+}
+
+user -> createGroup
+user -> viewGroupList
+user -> chooseGroup
+user -> exitGroup
+
+createGroup -[hidden]d-> viewGroupList
+viewGroupList -[hidden]d-> chooseGroup
+chooseGroup -[hidden]d-> exitGroup
+@enduml
