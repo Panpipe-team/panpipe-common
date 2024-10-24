@@ -1,6 +1,8 @@
-# panpipe-docs
-Repository for some documentation material
-## C4model diagrams
+# panpipe-common
+## docs
+### Terms dictionary
+See [terms dictionary](docs/terms-dictionary.md)
+### C4model diagrams
 References:
 [c4model](https://c4model.com/),
 [Structurizr](https://docs.structurizr.com/),
