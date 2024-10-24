@@ -1,0 +1,46 @@
+@startuml Panpipe Usecase Account
+skinparam actorStyle awesome
+
+skinparam usecase {
+    BackgroundColor Pink
+    BackgroundColor<< MVP >> LightGreen
+}
+
+actor Пользователь as user
+actor Гость as guest
+
+rectangle "Аккаунт" {
+    usecase Зарегистрироваться << MVP >> as register
+    usecase Войти << MVP >> as login
+
+    usecase "Ввести логин" << MVP >> as enterLogin
+    usecase "Ввести пароль" << MVP >> as enterPassword
+
+    usecase "Выйти из аккаунта" << MVP >> as logout
+
+    usecase "Управлять аккаунтом" as manageAccount
+    usecase "Поменять пароль" as changePassword
+    usecase "Поменять имя" as changeName
+
+}
+
+guest -> register
+guest -> login
+
+register .> enterLogin : include
+register .> enterPassword : include
+login .> enterLogin : include
+login .> enterPassword : include
+
+user -> logout
+user -> manageAccount
+manageAccount <|- changePassword
+manageAccount <|- changeName
+
+guest -[hidden]d-> user
+register -[hidden]d-> login
+enterLogin -[hidden]d-> enterPassword
+enterPassword -[hidden]d-> logout
+logout -[hidden]d-> manageAccount
+changeName -[hidden]d-> changePassword
+@enduml

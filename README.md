@@ -16,3 +16,8 @@ start [docker-compose](diagrams/c4model/docker-compose.yml) and navigate to
 To edit diagrams study Structurizr DSL, edit 
 [workspace.dsl](diagrams/c4model/structurizr/workspace.dsl), save changes
 and refresh Structurizr UI.
+### UML diagrams
+References: [PlantUML use case](https://plantuml.com/use-case-diagram)
+
+Preferred way: install VS Code PlantUML extension with requirements, edit,
+preview and save.
