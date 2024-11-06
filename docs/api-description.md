@@ -35,15 +35,19 @@ result-type : string }, ...]
 
 # Habits
 
-### GET /habits/{habit_id} - получить привычку по id
+### GET /habits/{id} - получить привычку по id
 - **response**:\
 { name : string,\
 periodicity : string,\
 goal : string,\
-result-type : string\
+result-type : string,\
 results : [{ id : uuid,\
 &emsp;date : dateTime,\
-&emsp;result : { value : string }} , ...]}
+&emsp;result : { value : string } }, \
+&emsp;{ id: uuid,\
+&emsp;date : dateTime,\
+&emsp;result : null
+} , ...]}
 
 ### GET /habits - получить все привычки пользователя
 - **response**:\
@@ -64,9 +68,10 @@ periodicity : string,\
 goal : string,\
 result-type : string\
 results : [{ id : uuid,\
-&emsp;date : dateTime }, ...]}
+&emsp;date : dateTime,\
+&emsp;result : null }, ...]}
 
-### PUT /habits/{habit_id}/results/{result_id} - добавить результат к привычке
+### PUT /habits/{habitId}/results/{resultId} - добавить или изменить результат привычки
 - **body**:\
 { value : string }
 - **response**:\
