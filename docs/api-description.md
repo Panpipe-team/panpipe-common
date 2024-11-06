@@ -2,7 +2,7 @@ Panpipe API
 
 # Auth
 
-### POST auth/signIn
+### POST auth/login
 - **body**:\
 { login : string,\
 password : string  }
@@ -10,7 +10,7 @@ password : string  }
 { user_id : uuid,\
 login : string }
 
-### POST auth/signUp
+### POST auth/register
 - **body**:\
 { login : string,\
 password : string  }
@@ -18,7 +18,7 @@ password : string  }
 { user_id : uuid,\
 login : string, }
 
-### POST auth/signOut
+### POST auth/logout
 - **response**: {}
 
 
@@ -31,13 +31,6 @@ name : string,\
 periodicity : string,\
 goal : string,\
 result-type : string }, ...]
-
-### GET /habitemplates/{id} - получить шаблон по id
-- **response**:\
-{ name : string,\
-periodicity : string,\
-goal : string,\
-result-type : string }
 
 
 # Habits
@@ -70,21 +63,17 @@ name : string,\
 periodicity : string,\
 goal : string,\
 result-type : string\
-results : []}
-
-### POST /habits/{habit_id}/results - добавить результат к привычке
-- **body**:\
-{ result: {\
-&emsp;date : dateTime,\
-&emsp;value : string } }
-- **response**:\
-{ name : string,\
-periodicity : string,\
-goal : string,\
-result-type : string\
 results : [{id : uuid,\
 &emsp;date : dateTime,\
 &emsp;value : string }, ...]}
+
+### PUT /habits/{habit-id}/results/{result-id} - добавить результат к привычке
+- **body**:\
+{ value : string }
+- **response**:\
+{ id : uuid,\
+&emsp;date : dateTime,\
+&emsp;value : string }  
 
 # Groups
 
@@ -92,7 +81,6 @@ results : [{id : uuid,\
 - **response**:\
 { name : string,\
 participants : [{ user_id : uuid, ...}],\
-habits : [{ habit_id : uuid,\
 &emsp;name : string,\
 &emsp;periodicity : string,\
 &emsp;goal : string,\
