@@ -8,28 +8,18 @@ Panpipe API
 password : string  }
 - **response**:\
 { user_id : uuid,\
-login : string,\
-name : string }
+login : string }
 
 ### POST auth/signUp
 - **body**:\
 { login : string,\
-?name : string,\
 password : string  }
 - **response**:\
 { user_id : uuid,\
-login : string,\
-name : string }
+login : string, }
 
 ### POST auth/signOut
 - **response**: {}
-
-# User
-
-### GET /users/{user_id} - получить пользователя по id
-- **response**:\
-{ login : string,\
-name : string }
 
 
 # Habit Templates
@@ -38,7 +28,6 @@ name : string }
 - **response**:\
 [{ template_id : uuid,\
 name : string,\
-description : string,\
 periodicity : string,\
 goal : string,\
 result-type : string }, ...]
@@ -46,7 +35,6 @@ result-type : string }, ...]
 ### GET /habitemplates/{id} - получить шаблон по id
 - **response**:\
 { name : string,\
-description : string,\
 periodicity : string,\
 goal : string,\
 result-type : string }
@@ -56,16 +44,21 @@ result-type : string }
 
 ### GET /habits/{habit_id} - получить привычку по id
 - **response**:\
-{ template_id: uuid,\
+{ name : string,\
+periodicity : string,\
+goal : string,\
+result-type : string\
 results : [{id : uuid,\
 &emsp;date : dateTime,\
-&emsp;value : string,\
-&emsp;comment: string }, ...]}
+&emsp;value : string }, ...]}
 
-### GET /habits/findByUser - получить все привычки пользователя
-- **query**: login - string
+### GET /habits- получить все привычки пользователя
 - **response**:\
-[{ habit_id : uuid}, ...]  //хотим возвращать всю инфу или только id?
+[{ habit_id : uuid,\
+name : string,\
+periodicity : string,\
+goal : string,\
+result-type : string }, ...]
 
 ### POST /habits - создать привычку по шаблону
 - **body**:\
@@ -73,22 +66,25 @@ results : [{id : uuid,\
 template_id: uuid }
 - **response**:\
 { habit_id : uuid,\
-template_id: uuid,\
+name : string,\
+periodicity : string,\
+goal : string,\
+result-type : string\
 results : []}
 
-### POST /habits/addResult - добавить результат к привычке
+### POST /habits/{habit_id}/results - добавить результат к привычке
 - **body**:\
-{ habut_id : uuid,\
-result: {\
+{ result: {\
 &emsp;date : dateTime,\
-&emsp;value : string,\
-&emsp;comment: string } }
+&emsp;value : string } }
 - **response**:\
-{ template_id: uuid,\
+{ name : string,\
+periodicity : string,\
+goal : string,\
+result-type : string\
 results : [{id : uuid,\
 &emsp;date : dateTime,\
-&emsp;value : string,\
-&emsp;comment: string }, ...]}
+&emsp;value : string }, ...]}
 
 # Groups
 
@@ -96,10 +92,13 @@ results : [{id : uuid,\
 - **response**:\
 { name : string,\
 participants : [{ user_id : uuid, ...}],\
-habits : [{ habit_id : uuid }, ...] }
+habits : [{ habit_id : uuid,\
+&emsp;name : string,\
+&emsp;periodicity : string,\
+&emsp;goal : string,\
+&emsp;result-type : string }, ...] }
 
-### GET /groups/findByUser - получить все группы пользователя
-- **query**: user_id - uuid
+### GET /groups - получить все группы пользователя
 - **response**:\
 [{ group_id : uuid,\
 name : string }, ...]
@@ -109,14 +108,4 @@ name : string }, ...]
 - **response**:\
 { group_id : uuid,\
 name : string, }
-
-### PUT /groups/addHabit - добавить в группу привычку
-- **body**:\
-{ group_id : uuid,\
-habit_id : uuid }
-- **response**:\
-{ group_id : uuid,\
-name : string,\
-participants : [{ user_id : uuid, ...}],\
-habits : [{ habit_id : uuid }, ...] }
 
