@@ -1,9 +1,11 @@
 # panpipe-common
 ## docs
 ### Terms dictionary
-See [terms dictionary](docs/terms-dictionary.md)
+See [terms dictionary](docs/terms-dictionary.md).
 ### Functional requirements
 See [functional requirements MVP](docs/functional-requirements-mvp.md).
+### Api
+See [api](docs/api-description.md).
 ### C4model diagrams
 References:
 [c4model](https://c4model.com/),
