@@ -2,6 +2,8 @@
 ## docs
 ### Terms dictionary
 See [terms dictionary](docs/terms-dictionary.md)
+### Api
+See [api](docs/api-description.md)
 ### C4model diagrams
 References:
 [c4model](https://c4model.com/),
