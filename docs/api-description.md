@@ -2,7 +2,7 @@ Panpipe API
 
 # Auth
 
-### POST auth/login
+### POST /login
 - **body**:\
 { login : string,\
 password : string  }
@@ -10,7 +10,7 @@ password : string  }
 { user_id : uuid,\
 login : string }
 
-### POST auth/register
+### POST /register
 - **body**:\
 { login : string,\
 password : string  }
@@ -18,7 +18,7 @@ password : string  }
 { user_id : uuid,\
 login : string, }
 
-### POST auth/logout
+### POST /logout
 - **response**: {}
 
 
@@ -41,11 +41,11 @@ result-type : string }, ...]
 periodicity : string,\
 goal : string,\
 result-type : string\
-results : [{id : uuid,\
+results : [{ id : uuid,\
 &emsp;date : dateTime,\
-&emsp;value : string }, ...]}
+&emsp;result : { value : string }} , ...]}
 
-### GET /habits- получить все привычки пользователя
+### GET /habits - получить все привычки пользователя
 - **response**:\
 [{ habit_id : uuid,\
 name : string,\
@@ -63,28 +63,23 @@ name : string,\
 periodicity : string,\
 goal : string,\
 result-type : string\
-results : [{id : uuid,\
-&emsp;date : dateTime,\
-&emsp;value : string }, ...]}
+results : [{ id : uuid,\
+&emsp;date : dateTime }, ...]}
 
-### PUT /habits/{habit-id}/results/{result-id} - добавить результат к привычке
+### PUT /habits/{habit_id}/results/{result_id} - добавить результат к привычке
 - **body**:\
 { value : string }
 - **response**:\
 { id : uuid,\
-&emsp;date : dateTime,\
-&emsp;value : string }  
+date : dateTime,\
+result : { value : string }}  
 
 # Groups
 
 ### GET /groups/{id} - получить группу по id
 - **response**:\
 { name : string,\
-participants : [{ user_id : uuid, ...}],\
-&emsp;name : string,\
-&emsp;periodicity : string,\
-&emsp;goal : string,\
-&emsp;result-type : string }, ...] }
+participants : [{ user_id : uuid, ...}]}
 
 ### GET /groups - получить все группы пользователя
 - **response**:\
