@@ -24,18 +24,15 @@ password : string  }
 - **response**: \
 { login: string }
 
-# Habit Templates
+# Habits
 
-### GET /habitTemplates - получить все шаблоны
+### GET /habits/templates - получить все системные шаблоны привычек
 - **response**:\
 [{ template_id : uuid,\
 name : string,\
 periodicity : string,\
 goal : string,\
 result-type : string }, ...]
-
-
-# Habits
 
 ### GET /habits/{id} - получить привычку по id
 - **response**:\
