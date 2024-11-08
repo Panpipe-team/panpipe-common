@@ -7,45 +7,44 @@ Panpipe API
 { login : string,\
 password : string  }
 - **response**:\
-{ user_id : uuid,\
-login : string }
+{ user_id : uuid }
 
 ### POST /register
 - **body**:\
 { login : string,\
 password : string  }
 - **response**:\
-{ user_id : uuid,\
-login : string, }
+{ user_id : uuid }
 
 ### POST /logout
 - **response**: {}
 
+# Users
+### GET /users/{id}
+- **response**: \
+{ login: string }
 
-# Habit Templates
+# Habits
 
-### GET /habitTemplates - получить все шаблоны
+### GET /habits/templates - получить все системные шаблоны привычек
 - **response**:\
 [{ template_id : uuid,\
 name : string,\
 periodicity : string,\
 goal : string,\
-result-type : string }, ...]
-
-
-# Habits
+result_type : string }, ...]
 
 ### GET /habits/{id} - получить привычку по id
 - **response**:\
 { name : string,\
 periodicity : string,\
 goal : string,\
-result-type : string,\
-results : [{ id : uuid,\
-&emsp;date : dateTime,\
+result_type : string,\
+marks : [{ id : uuid,\
+&emsp;timestamp : dateTime,\
 &emsp;result : { value : string } }, \
 &emsp;{ id: uuid,\
-&emsp;date : dateTime,\
+&emsp;timestamp : dateTime,\
 &emsp;result : null
 } , ...]}
 
@@ -55,29 +54,20 @@ results : [{ id : uuid,\
 name : string,\
 periodicity : string,\
 goal : string,\
-result-type : string }, ...]
+result_type : string }, ...]
 
 ### POST /habits - создать привычку по шаблону
 - **body**:\
 { user_id : uuid,\
 template_id: uuid }
 - **response**:\
-{ habit_id : uuid,\
-name : string,\
-periodicity : string,\
-goal : string,\
-result-type : string\
-results : [{ id : uuid,\
-&emsp;date : dateTime,\
-&emsp;result : null }, ...]}
+{ habit_id : uuid }
 
-### PUT /habits/{habitId}/results/{resultId} - добавить или изменить результат привычки
+### PUT /habits/{habitId}/marks/{markId}/result - добавить или изменить результат привычки
 - **body**:\
 { value : string }
 - **response**:\
-{ id : uuid,\
-date : dateTime,\
-result : { value : string }}  
+{ }  
 
 # Groups
 
@@ -94,6 +84,4 @@ name : string }, ...]
 ### POST /groups - создать группу
 - **body**: { name : string }
 - **response**:\
-{ group_id : uuid,\
-name : string, }
-
+{ group_id : uuid }
