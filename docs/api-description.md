@@ -32,19 +32,19 @@ password : string  }
 name : string,\
 periodicity : string,\
 goal : string,\
-result-type : string }, ...]
+result_type : string }, ...]
 
 ### GET /habits/{id} - получить привычку по id
 - **response**:\
 { name : string,\
 periodicity : string,\
 goal : string,\
-result-type : string,\
+result_type : string,\
 marks : [{ id : uuid,\
-&emsp;date : dateTime,\
+&emsp;timestamp : dateTime,\
 &emsp;result : { value : string } }, \
 &emsp;{ id: uuid,\
-&emsp;date : dateTime,\
+&emsp;timestamp : dateTime,\
 &emsp;result : null
 } , ...]}
 
@@ -54,7 +54,7 @@ marks : [{ id : uuid,\
 name : string,\
 periodicity : string,\
 goal : string,\
-result-type : string }, ...]
+result_type : string }, ...]
 
 ### POST /habits - создать привычку по шаблону
 - **body**:\
