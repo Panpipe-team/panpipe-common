@@ -7,20 +7,22 @@ Panpipe API
 { login : string,\
 password : string  }
 - **response**:\
-{ user_id : uuid,\
-login : string }
+{ user_id : uuid }
 
 ### POST /register
 - **body**:\
 { login : string,\
 password : string  }
 - **response**:\
-{ user_id : uuid,\
-login : string, }
+{ user_id : uuid }
 
 ### POST /logout
 - **response**: {}
 
+# Users
+### GET /users/{id}
+- **response**: \
+{ login: string }
 
 # Habit Templates
 
@@ -62,22 +64,13 @@ result-type : string }, ...]
 { user_id : uuid,\
 template_id: uuid }
 - **response**:\
-{ habit_id : uuid,\
-name : string,\
-periodicity : string,\
-goal : string,\
-result-type : string\
-results : [{ id : uuid,\
-&emsp;date : dateTime,\
-&emsp;result : null }, ...]}
+{ habit_id : uuid }
 
 ### PUT /habits/{habitId}/results/{resultId} - добавить или изменить результат привычки
 - **body**:\
 { value : string }
 - **response**:\
-{ id : uuid,\
-date : dateTime,\
-result : { value : string }}  
+{ id : uuid }  
 
 # Groups
 
@@ -94,6 +87,4 @@ name : string }, ...]
 ### POST /groups - создать группу
 - **body**: { name : string }
 - **response**:\
-{ group_id : uuid,\
-name : string, }
-
+{ group_id : uuid }
