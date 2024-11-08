@@ -40,7 +40,7 @@ result-type : string }, ...]
 periodicity : string,\
 goal : string,\
 result-type : string,\
-results : [{ id : uuid,\
+marks : [{ id : uuid,\
 &emsp;date : dateTime,\
 &emsp;result : { value : string } }, \
 &emsp;{ id: uuid,\
@@ -63,11 +63,11 @@ template_id: uuid }
 - **response**:\
 { habit_id : uuid }
 
-### PUT /habits/{habitId}/results/{resultId} - добавить или изменить результат привычки
+### PUT /habits/{habitId}/marks/{markId}/result - добавить или изменить результат привычки
 - **body**:\
 { value : string }
 - **response**:\
-{ id : uuid }  
+{ }  
 
 # Groups
 
