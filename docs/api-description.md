@@ -7,14 +7,14 @@ Panpipe API
 { login : string,\
 password : string  }
 - **response**:\
-{ user_id : uuid }
+{ userId : uuid }
 
 ### POST /register
 - **body**:\
 { login : string,\
 password : string  }
 - **response**:\
-{ user_id : uuid }
+{ userId : uuid }
 
 ### POST /logout
 - **response**: {}
@@ -28,18 +28,18 @@ password : string  }
 
 ### GET /habits/templates - получить все системные шаблоны привычек
 - **response**:\
-[{ template_id : uuid,\
+[{ templateId : uuid,\
 name : string,\
 periodicity : string,\
 goal : string,\
-result_type : string }, ...]
+resultType : string }, ...]
 
 ### GET /habits/{id} - получить привычку по id
 - **response**:\
 { name : string,\
 periodicity : string,\
 goal : string,\
-result_type : string,\
+resultType : string,\
 marks : [{ id : uuid,\
 &emsp;timestamp : dateTime,\
 &emsp;result : { value : string } }, \
@@ -50,18 +50,18 @@ marks : [{ id : uuid,\
 
 ### GET /habits - получить все привычки пользователя
 - **response**:\
-[{ habit_id : uuid,\
+[{ habitId : uuid,\
 name : string,\
 periodicity : string,\
 goal : string,\
-result_type : string }, ...]
+resultType : string }, ...]
 
 ### POST /habits - создать привычку по шаблону
 - **body**:\
-{ user_id : uuid,\
-template_id: uuid }
+{ userId : uuid,\
+templateId: uuid }
 - **response**:\
-{ habit_id : uuid }
+{ habitId : uuid }
 
 ### PUT /habits/{habitId}/marks/{markId}/result - добавить или изменить результат привычки
 - **body**:\
@@ -74,14 +74,14 @@ template_id: uuid }
 ### GET /groups/{id} - получить группу по id
 - **response**:\
 { name : string,\
-participants : [{ user_id : uuid, ...}]}
+participants : [{ userId : uuid, ...}]}
 
 ### GET /groups - получить все группы пользователя
 - **response**:\
-[{ group_id : uuid,\
+[{ groupId : uuid,\
 name : string }, ...]
 
 ### POST /groups - создать группу
 - **body**: { name : string }
 - **response**:\
-{ group_id : uuid }
+{ groupId : uuid }
