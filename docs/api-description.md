@@ -58,8 +58,7 @@ resultType : string }, ...]
 
 ### POST /habits - создать привычку по шаблону
 - **body**:\
-{ userId : uuid,\
-templateId: uuid }
+{ templateId: uuid }
 - **response**:\
 { habitId : uuid }
 
