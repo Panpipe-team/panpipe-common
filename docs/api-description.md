@@ -28,11 +28,13 @@ password : string  }
 
 ### GET /habits/templates - получить все системные шаблоны привычек
 - **response**:\
-[{ templateId : uuid,\
-name : string,\
-periodicity : string,\
-goal : string,\
-resultType : string }, ...]
+{ templates: \
+&emsp;[{ templateId : uuid,\
+&emsp;name : string,\
+&emsp;periodicity : string,\
+&emsp;goal : string,\
+&emsp;resultType : string }, ...] \
+}
 
 ### GET /habits/{id} - получить привычку по id
 - **response**:\
@@ -50,11 +52,13 @@ marks : [{ id : uuid,\
 
 ### GET /habits - получить все привычки пользователя
 - **response**:\
-[{ habitId : uuid,\
-name : string,\
-periodicity : string,\
-goal : string,\
-resultType : string }, ...]
+{ habits: \
+&emsp;[{ habitId : uuid,\
+&emsp;name : string,\
+&emsp;periodicity : string,\
+&emsp;goal : string,\
+&emsp;resultType : string }, ...] \
+}
 
 ### POST /habits - создать привычку по шаблону
 - **body**:\
@@ -77,8 +81,10 @@ participants : [{ userId : uuid, ...}]}
 
 ### GET /groups - получить все группы пользователя
 - **response**:\
-[{ groupId : uuid,\
-name : string }, ...]
+{ groups: \
+&emsp;[{ groupId : uuid,\
+&emsp;name : string }, ...]\
+}
 
 ### POST /groups - создать группу
 - **body**: { name : string }
