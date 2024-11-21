@@ -7,93 +7,86 @@ Panpipe API
 { login : string,\
 password : string  }
 - **response**:\
-{ user_id : uuid,\
-login : string }
+{ userId : uuid }
 
 ### POST /register
 - **body**:\
 { login : string,\
 password : string  }
 - **response**:\
-{ user_id : uuid,\
-login : string, }
+{ userId : uuid }
 
 ### POST /logout
 - **response**: {}
 
-
-# Habit Templates
-
-### GET /habitTemplates - получить все шаблоны
-- **response**:\
-[{ template_id : uuid,\
-name : string,\
-periodicity : string,\
-goal : string,\
-result-type : string }, ...]
-
+# Users
+### GET /users/{id}
+- **response**: \
+{ login: string }
 
 # Habits
+
+### GET /habits/templates - получить все системные шаблоны привычек
+- **response**:\
+{ templates: \
+&emsp;[{ templateId : uuid,\
+&emsp;name : string,\
+&emsp;periodicity : string,\
+&emsp;goal : string,\
+&emsp;resultType : string }, ...] \
+}
 
 ### GET /habits/{id} - получить привычку по id
 - **response**:\
 { name : string,\
 periodicity : string,\
 goal : string,\
-result-type : string,\
-results : [{ id : uuid,\
-&emsp;date : dateTime,\
+resultType : string,\
+marks : [{ id : uuid,\
+&emsp;timestamp : dateTime,\
 &emsp;result : { value : string } }, \
 &emsp;{ id: uuid,\
-&emsp;date : dateTime,\
+&emsp;timestamp : dateTime,\
 &emsp;result : null
 } , ...]}
 
 ### GET /habits - получить все привычки пользователя
 - **response**:\
-[{ habit_id : uuid,\
-name : string,\
-periodicity : string,\
-goal : string,\
-result-type : string }, ...]
+{ habits: \
+&emsp;[{ habitId : uuid,\
+&emsp;name : string,\
+&emsp;periodicity : string,\
+&emsp;goal : string,\
+&emsp;resultType : string }, ...] \
+}
 
 ### POST /habits - создать привычку по шаблону
 - **body**:\
-{ user_id : uuid,\
-template_id: uuid }
+{ templateId: uuid }
 - **response**:\
-{ habit_id : uuid,\
-name : string,\
-periodicity : string,\
-goal : string,\
-result-type : string\
-results : [{ id : uuid,\
-&emsp;date : dateTime,\
-&emsp;result : null }, ...]}
+{ habitId : uuid }
 
-### PUT /habits/{habitId}/results/{resultId} - добавить или изменить результат привычки
+### PUT /habits/{habitId}/marks/{markId}/result - добавить или изменить результат привычки
 - **body**:\
 { value : string }
 - **response**:\
-{ id : uuid,\
-date : dateTime,\
-result : { value : string }}  
+{ }  
 
 # Groups
 
 ### GET /groups/{id} - получить группу по id
 - **response**:\
 { name : string,\
-participants : [{ user_id : uuid, ...}]}
+participants : [{ userId : uuid, ...}]}
 
 ### GET /groups - получить все группы пользователя
 - **response**:\
-[{ group_id : uuid,\
-name : string }, ...]
+{ groups: \
+&emsp;[{ groupId : uuid,\
+&emsp;name : string }, ...]\
+}
 
 ### POST /groups - создать группу
 - **body**: { name : string }
 - **response**:\
-{ group_id : uuid,\
-name : string, }
-
+{ groupId : uuid }
