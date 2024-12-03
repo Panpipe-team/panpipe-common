@@ -3,7 +3,7 @@
 ### Terms dictionary
 See [terms dictionary](docs/terms-dictionary.md).
 ### Functional requirements
-See [functional requirements MVP](docs/functional-requirements-mvp.md).
+See [functional requirements MVP](docs/functional-requirements-mvp.md) and [functional requirements](docs/functional-requirements.md).
 ### Api
 See [api](docs/api-description.md).
 ### C4model diagrams
