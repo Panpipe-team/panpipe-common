@@ -111,6 +111,11 @@ Panpipe API
 - **response**:\
   { id : uuid }
 
+### GET /users/habits/{habitId}/statistics - получить статистику для шаблонной привычки
+
+- **response**:\
+  { value : number }
+
 # Habits
 
 ### GET /habits/templates - получить все системные шаблоны привычек
@@ -201,6 +206,18 @@ Panpipe API
   &emsp;&emsp;value : number },\
   &emsp;goal : string,\
   &emsp;resultType : string }, ...] }
+  
+### GET /groups/{groupId}/personal-habits - получить все групповые привычки с индивидуальным зачётом
+
+- **response**:\
+  { habits:\
+  &emsp;[ { id : uuid,\
+  &emsp;name : string,\
+  &emsp;periodicity :\
+  &emsp;&emsp;{ type : string,\
+  &emsp;&emsp;value : number },\
+  &emsp;goal : string,\
+  &emsp;resultType : string }, ...] }
 
 ### GET /groups/{groupId}/common-habits/{habitId} - получить групповую привычку с общим зачетом по id
 
@@ -223,18 +240,6 @@ Panpipe API
   &emsp;{ id: uuid,\
   &emsp;timestamp : dateTime,\
   &emsp;result : null } , ...] } 
-
-### GET /groups/{groupId}/personal-habits - получить все групповые привычки с индивидуальным зачётом
-
-- **response**:\
-  { habits:\
-  &emsp;[ { id : uuid,\
-  &emsp;name : string,\
-  &emsp;periodicity :\
-  &emsp;&emsp;{ type : string,\
-  &emsp;&emsp;value : number },\
-  &emsp;goal : string,\
-  &emsp;resultType : string }, ...] }
 
 ### GET /groups/{groupId}/personal-habits/{habitId} - получить групповую привычку с индивидуальным зачетом по id
 
@@ -264,6 +269,8 @@ Panpipe API
 #### по шаблону:
 - **query**:\
   templateId : uuid
+- **body**:\
+  { }
 - **response**:\
   { id : uuid }
 
@@ -285,6 +292,8 @@ Panpipe API
 #### по шаблону:
 - **query**:\
   templateId : uuid
+- **body**:\
+  { }
 - **response**:\
   { id : uuid }
 
@@ -300,3 +309,13 @@ Panpipe API
   resultType : string } 
 - **response**:\
   { id : uuid }
+
+### GET /groups/common-habits/{habitId}/statistics - получить статистику для групповой шаблонной привычки с общим зачетом
+
+- **response**:\
+  { value : number }
+
+### GET /groups/personal-habits/{habitId}/statistics - получить статистику для групповой привычки с индивидуальным зачетом
+
+- **response**:\
+  { value : number }
