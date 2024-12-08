@@ -61,7 +61,6 @@ Panpipe API
   { habits:\
   &emsp;[ { id : uuid,\
   &emsp;name : string,\
-  &emsp;description : string,\
   &emsp;periodicity :\
   &emsp;&emsp;{ type : string,\
   &emsp;&emsp;value : number },\
@@ -93,8 +92,10 @@ Panpipe API
 #### по шаблону:
 - **query**:\
   templateId : uuid
+- **body**:\
+  { }
 - **response**:\
-  { habitId : uuid }
+  { id : uuid }
 
 #### с кастомными параметрами:
 - **body**:\
@@ -104,9 +105,9 @@ Panpipe API
   &emsp;{ type : string,\
   &emsp;value : number },\
   goal : string,\
-  resultType : string } }
+  resultType : string }
 - **response**:\
-  { habitId : uuid }
+  { id : uuid }
 
 # Habits
 
@@ -127,7 +128,7 @@ Panpipe API
 
 - **body**:\
   { value : string,\
-  *comment : string }
+  comment : string }
 - **response**: {}
 
 ### PUT /habits/{habitId}/parameters - изменить параметр(ы) привычки
@@ -135,9 +136,8 @@ Panpipe API
 - **query**:\
   *name : string,\
   *description : string,\
-  *periodicity :\
-  &emsp;{ type : string,\
-  &emsp;value : number },\
+  *periodicityType: string,\
+  *periodicityValue: number,\
   *goal : string
 - **response**: {}
 
@@ -155,7 +155,7 @@ Panpipe API
 
 - **response**:\
   { groups:\
-  &emsp;[ { groupId : uuid,\
+  &emsp;[ { id : uuid,\
   &emsp;name : string }, ...] }
 
 ### POST /groups - создать группу
@@ -175,14 +175,12 @@ Panpipe API
 
 - **response**: {}
 
-### GET /groups/{groupId}/habits - получить все привычки в группе
+### GET /groups/{groupId}/common-habits - получить все групповые привычки с общим зачётом
 
 - **response**:\
   { habits:\
   &emsp;[ { id : uuid,\
-  &emsp;habitType : string, //общий зачет или индивидуальный\
   &emsp;name : string,\
-  &emsp;description : string,\
   &emsp;periodicity :\
   &emsp;&emsp;{ type : string,\
   &emsp;&emsp;value : number },\
@@ -192,10 +190,30 @@ Panpipe API
 ### GET /groups/{groupId}/common-habits/{habitId} - получить групповую привычку с общим зачетом по id
 
 - **response**:\
-  { habits: \
-  &emsp;[ { habitId : uuid,\
+  { id : uuid,\
+  name : string,\
+  description : string,\
+  periodicity :\
+  &emsp;{ type : string,\
+  &emsp;value : number },\
+  goal : string,\
+  resultType : string,\
+  isTemplated : bool,\
+  marks :\
+  &emsp;[ { id : uuid,\
+  &emsp;timestamp : dateTime,\
+  &emsp;result : { value : string,\
+  &emsp;&emsp;comment : string} }, \
+  &emsp;{ id: uuid,\
+  &emsp;timestamp : dateTime,\
+  &emsp;result : null } , ...] } 
+
+### GET /groups/{groupId}/personal-habits - получить все групповые привычки с индивидуальным зачётом
+
+- **response**:\
+  { habits:\
+  &emsp;[ { id : uuid,\
   &emsp;name : string,\
-  &emsp;description : string,\
   &emsp;periodicity :\
   &emsp;&emsp;{ type : string,\
   &emsp;&emsp;value : number },\
@@ -230,7 +248,7 @@ Panpipe API
 - **query**:\
   templateId : uuid
 - **response**:\
-  { habitId : uuid }
+  { id : uuid }
 
 #### с кастомными параметрами:
 - **body**:\
@@ -240,9 +258,9 @@ Panpipe API
   &emsp;{ type : string,\
   &emsp;value : number },\
   goal : string,\
-  resultType : string } }
+  resultType : string } 
 - **response**:\
-  { habitId : uuid }
+  { id : uuid }
 
 ### POST /groups/{groupId}/personal-habits - создать групповую привычку с индивидуальным зачетом
 
@@ -250,7 +268,7 @@ Panpipe API
 - **query**:\
   templateId : uuid
 - **response**:\
-  { habitId : uuid }
+  { id : uuid }
 
 #### с кастомными параметрами:
 - **body**:\
@@ -260,6 +278,6 @@ Panpipe API
   &emsp;{ type : string,\
   &emsp;value : number },\
   goal : string,\
-  resultType : string } }
+  resultType : string } 
 - **response**:\
-  { habitId : uuid }
+  { id : uuid }
