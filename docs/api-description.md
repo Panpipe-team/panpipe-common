@@ -310,12 +310,12 @@ Panpipe API
 - **response**:\
   { id : uuid }
 
-### GET /groups/common-habits/{habitId}/statistics - получить статистику для групповой шаблонной привычки с общим зачетом
+### GET /groups/{groupId}/common-habits/{habitId}/statistics - получить статистику для групповой шаблонной привычки с общим зачетом
 
 - **response**:\
   { value : number }
 
-### GET /groups/personal-habits/{habitId}/statistics - получить статистику для групповой привычки с индивидуальным зачетом
+### GET /groups/{groupId}/personal-habits/{habitId}/statistics - получить статистику для групповой привычки с индивидуальным зачетом
 
 - **response**:\
   { value : number }
