@@ -63,7 +63,7 @@ Panpipe API
   &emsp;name : string,\
   &emsp;periodicity :\
   &emsp;&emsp;{ type : string,\
-  &emsp;&emsp;value : number },\
+  &emsp;&emsp;value : positiveInteger },\
   &emsp;goal : string,\
   &emsp;resultType : string }, ...] }
 
@@ -75,7 +75,7 @@ Panpipe API
   tags: [ string, ... ],\
   periodicity : \
   &emsp;{ type : string,\
-  &emsp;value : number },\
+  &emsp;value : positiveInteger },\
   goal : string,\
   resultType : string,\
   isTemplated : bool,\
@@ -105,7 +105,7 @@ Panpipe API
   tags: [ uuid, ... ],\
   periodicity :\
   &emsp;{ type : string,\
-  &emsp;value : number },\
+  &emsp;value : positiveInteger },\
   goal : string,\
   resultType : string }
 - **response**:\
@@ -114,7 +114,7 @@ Panpipe API
 ### GET /users/habits/{habitId}/statistics - получить статистику для шаблонной привычки
 
 - **response**:\
-  { value : number }
+  { value : float }
 
 # Habits
 
@@ -128,7 +128,7 @@ Panpipe API
   &emsp;tags: [ { id: uuid, name: string }, ... ],\
   &emsp;periodicity :\
   &emsp;&emsp;{ type : string,\
-  &emsp;&emsp;value : number },\
+  &emsp;&emsp;value : positiveInteger },\
   &emsp;goal : string,\
   &emsp;resultType : string }, ...] }
 
@@ -157,7 +157,7 @@ Panpipe API
   *name : string,\
   *description : string,\
   *periodicityType: string,\
-  *periodicityValue: number,\
+  *periodicityValue: positiveInteger,\
   *goal : string
 - **response**: {}
 
@@ -187,8 +187,10 @@ Panpipe API
 - **response**:\
   { id : uuid }
 
-### PUT /groups/{groupId}/participants/{userId} - добавить участника в группу по id
+### POST /groups/{groupId}/participants - добавить участника в группу по id
 
+- **body**:\
+  { userId : uuid }
 - **response**: {}
 
 ### DELETE /groups/{groupId}/participants - выйти из группы
@@ -203,7 +205,7 @@ Panpipe API
   &emsp;name : string,\
   &emsp;periodicity :\
   &emsp;&emsp;{ type : string,\
-  &emsp;&emsp;value : number },\
+  &emsp;&emsp;value : positiveInteger },\
   &emsp;goal : string,\
   &emsp;resultType : string }, ...] }
   
@@ -215,7 +217,7 @@ Panpipe API
   &emsp;name : string,\
   &emsp;periodicity :\
   &emsp;&emsp;{ type : string,\
-  &emsp;&emsp;value : number },\
+  &emsp;&emsp;value : positiveInteger },\
   &emsp;goal : string,\
   &emsp;resultType : string }, ...] }
 
@@ -228,7 +230,7 @@ Panpipe API
   tags: [ string, ... ],\
   periodicity :\
   &emsp;{ type : string,\
-  &emsp;value : number },\
+  &emsp;value : positiveInteger },\
   goal : string,\
   resultType : string,\
   isTemplated : bool,\
@@ -249,7 +251,7 @@ Panpipe API
   tags: [ string, ... ],\
   periodicity : \
   &emsp;{ type : string,\
-  &emsp;value : number },\
+  &emsp;value : positiveInteger },\
   goal : string,\
   resultType : string,\
   isTemplated : bool,\
@@ -281,7 +283,7 @@ Panpipe API
   tags: [ uuid, ... ],\
   periodicity :\
   &emsp;{ type : string,\
-  &emsp;value : number },\
+  &emsp;value : positiveInteger },\
   goal : string,\
   resultType : string } 
 - **response**:\
@@ -304,7 +306,7 @@ Panpipe API
   tags: [ uuid, ... ],\
   periodicity :\
   &emsp;{ type : string,\
-  &emsp;value : number },\
+  &emsp;value : positiveInteger },\
   goal : string,\
   resultType : string } 
 - **response**:\
@@ -313,9 +315,9 @@ Panpipe API
 ### GET /groups/{groupId}/common-habits/{habitId}/statistics - получить статистику для групповой шаблонной привычки с общим зачетом
 
 - **response**:\
-  { value : number }
+  { value : float }
 
 ### GET /groups/{groupId}/personal-habits/{habitId}/statistics - получить статистику для групповой привычки с индивидуальным зачетом
 
 - **response**:\
-  { value : number }
+  { value : float }
