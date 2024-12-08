@@ -72,6 +72,7 @@ Panpipe API
 - **response**:\
   { name : string,\
   description : string,\
+  tags: [ string, ... ],\
   periodicity : \
   &emsp;{ type : string,\
   &emsp;value : number },\
@@ -101,6 +102,7 @@ Panpipe API
 - **body**:\
   { name : string,\
   description : string,\
+  tags: [ uuid, ... ],\
   periodicity :\
   &emsp;{ type : string,\
   &emsp;value : number },\
@@ -118,11 +120,24 @@ Panpipe API
   &emsp;[ { id : uuid,\
   &emsp;name : string,\
   &emsp;description : string,\
+  &emsp;tags: [ { id: uuid, name: string }, ... ],\
   &emsp;periodicity :\
   &emsp;&emsp;{ type : string,\
   &emsp;&emsp;value : number },\
   &emsp;goal : string,\
   &emsp;resultType : string }, ...] }
+
+### GET /habits/tags - получить все системные тэги привычек
+
+- **response**:\
+  { tags: \
+  &emsp;[ { id : uuid,\
+  &emsp;name: string }, ... ] }
+
+### GET /habits/tags/{id} - получить системный тэг привычки по id
+
+- **response**:\
+  {  name: string }
 
 ### PUT /habits/{habitId}/marks/{markId}/result - добавить или изменить результат привычки
 
@@ -193,6 +208,7 @@ Panpipe API
   { id : uuid,\
   name : string,\
   description : string,\
+  tags: [ string, ... ],\
   periodicity :\
   &emsp;{ type : string,\
   &emsp;value : number },\
@@ -225,6 +241,7 @@ Panpipe API
 - **response**:\
   { name : string,\
   description : string,\
+  tags: [ string, ... ],\
   periodicity : \
   &emsp;{ type : string,\
   &emsp;value : number },\
@@ -254,6 +271,7 @@ Panpipe API
 - **body**:\
   { name : string,\
   description : string,\
+  tags: [ uuid, ... ],\
   periodicity :\
   &emsp;{ type : string,\
   &emsp;value : number },\
@@ -274,6 +292,7 @@ Panpipe API
 - **body**:\
   { name : string,\
   description : string,\
+  tags: [ uuid, ... ],\
   periodicity :\
   &emsp;{ type : string,\
   &emsp;value : number },\
