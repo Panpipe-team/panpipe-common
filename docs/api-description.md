@@ -1,92 +1,321 @@
 Panpipe API
 
+### Base URL : /api/v1.1
+
 # Auth
 
 ### POST /login
+
 - **body**:\
-{ login : string,\
-password : string  }
+  { login : string,\
+  password : string }
 - **response**:\
-{ userId : uuid }
+  { id : uuid }
 
 ### POST /register
+
 - **body**:\
-{ login : string,\
-password : string  }
+  { login : string,\
+  name : string,\
+  password : string }
 - **response**:\
-{ userId : uuid }
+  { id : uuid }
 
 ### POST /logout
+
+- **response**: {}
+
+# Accounts
+
+### PUT /accounts/name - поменять имя
+
+- **body**:\
+  { newName : string }
+- **response**: {}
+
+### PUT /accounts/password - поменять пароль
+
+- **body**:\
+  { prevPassword : string,\
+  newPassword : string }
 - **response**: {}
 
 # Users
-### GET /users/{id}
+
+### GET /users/{id} - получить пользователя по id
+
 - **response**: \
-{ login: string }
+  { login: string,\
+  name : string }
+
+### GET /users - найти пользователя по логину
+- **query** :\
+  login : string
+- **response**:\
+  { id : uuid,\
+  name : string }
+
+### GET /users/habits - получить все привычки пользователя
+
+- **response**:\
+  { habits:\
+  &emsp;[ { id : uuid,\
+  &emsp;name : string,\
+  &emsp;periodicity :\
+  &emsp;&emsp;{ type : string,\
+  &emsp;&emsp;value : number },\
+  &emsp;goal : string,\
+  &emsp;resultType : string }, ...] }
+
+### GET /users/habits/{id} - получить привычку по id
+
+- **response**:\
+  { name : string,\
+  description : string,\
+  tags: [ string, ... ],\
+  periodicity : \
+  &emsp;{ type : string,\
+  &emsp;value : number },\
+  goal : string,\
+  resultType : string,\
+  isTemplated : bool,\
+  marks :\
+  &emsp;[ { id : uuid,\
+  &emsp;timestamp : dateTime,\
+  &emsp;result : { value : string,\
+  &emsp;&emsp;comment : string} }, \
+  &emsp;{ id: uuid,\
+  &emsp;timestamp : dateTime,\
+  &emsp;result : null } , ...] }
+
+### POST /users/habits - создать привычку
+
+#### по шаблону:
+- **query**:\
+  templateId : uuid
+- **body**:\
+  { }
+- **response**:\
+  { id : uuid }
+
+#### с кастомными параметрами:
+- **body**:\
+  { name : string,\
+  description : string,\
+  tags: [ uuid, ... ],\
+  periodicity :\
+  &emsp;{ type : string,\
+  &emsp;value : number },\
+  goal : string,\
+  resultType : string }
+- **response**:\
+  { id : uuid }
+
+### GET /users/habits/{habitId}/statistics - получить статистику для шаблонной привычки
+
+- **response**:\
+  { value : number }
 
 # Habits
 
 ### GET /habits/templates - получить все системные шаблоны привычек
-- **response**:\
-{ templates: \
-&emsp;[{ templateId : uuid,\
-&emsp;name : string,\
-&emsp;periodicity : string,\
-&emsp;goal : string,\
-&emsp;resultType : string }, ...] \
-}
 
-### GET /habits/{id} - получить привычку по id
 - **response**:\
-{ name : string,\
-periodicity : string,\
-goal : string,\
-resultType : string,\
-marks : [{ id : uuid,\
-&emsp;timestamp : dateTime,\
-&emsp;result : { value : string } }, \
-&emsp;{ id: uuid,\
-&emsp;timestamp : dateTime,\
-&emsp;result : null
-} , ...]}
+  { templates:\
+  &emsp;[ { id : uuid,\
+  &emsp;name : string,\
+  &emsp;description : string,\
+  &emsp;tags: [ { id: uuid, name: string }, ... ],\
+  &emsp;periodicity :\
+  &emsp;&emsp;{ type : string,\
+  &emsp;&emsp;value : number },\
+  &emsp;goal : string,\
+  &emsp;resultType : string }, ...] }
 
-### GET /habits - получить все привычки пользователя
-- **response**:\
-{ habits: \
-&emsp;[{ habitId : uuid,\
-&emsp;name : string,\
-&emsp;periodicity : string,\
-&emsp;goal : string,\
-&emsp;resultType : string }, ...] \
-}
+### GET /habits/tags - получить все системные тэги привычек
 
-### POST /habits - создать привычку по шаблону
-- **body**:\
-{ templateId: uuid }
 - **response**:\
-{ habitId : uuid }
+  { tags: \
+  &emsp;[ { id : uuid,\
+  &emsp;name: string }, ... ] }
+
+### GET /habits/tags/{id} - получить системный тэг привычки по id
+
+- **response**:\
+  {  name: string }
 
 ### PUT /habits/{habitId}/marks/{markId}/result - добавить или изменить результат привычки
+
 - **body**:\
-{ value : string }
-- **response**:\
-{ }  
+  { value : string,\
+  comment : string }
+- **response**: {}
+
+### PUT /habits/{habitId}/parameters - изменить параметр(ы) привычки
+
+- **query**:\
+  *name : string,\
+  *description : string,\
+  *periodicityType: string,\
+  *periodicityValue: number,\
+  *goal : string
+- **response**: {}
 
 # Groups
 
 ### GET /groups/{id} - получить группу по id
+
 - **response**:\
-{ name : string,\
-participants : [{ userId : uuid, ...}]}
+  { name : string,\
+  participants :\
+  &emsp;[ { userId : uuid,\
+  &emsp;name : string }\, ...] }
 
 ### GET /groups - получить все группы пользователя
+
 - **response**:\
-{ groups: \
-&emsp;[{ groupId : uuid,\
-&emsp;name : string }, ...]\
-}
+  { groups:\
+  &emsp;[ { id : uuid,\
+  &emsp;name : string }, ...] }
 
 ### POST /groups - создать группу
-- **body**: { name : string }
+
+- **body**:\
+  { name : string,\
+  participants : \
+  &emsp;[ { userId : uuid }, ...] }
 - **response**:\
-{ groupId : uuid }
+  { id : uuid }
+
+### PUT /groups/{groupId}/participants/{userId} - добавить участника в группу по id
+
+- **response**: {}
+
+### DELETE /groups/{groupId}/participants - выйти из группы
+
+- **response**: {}
+
+### GET /groups/{groupId}/common-habits - получить все групповые привычки с общим зачётом
+
+- **response**:\
+  { habits:\
+  &emsp;[ { id : uuid,\
+  &emsp;name : string,\
+  &emsp;periodicity :\
+  &emsp;&emsp;{ type : string,\
+  &emsp;&emsp;value : number },\
+  &emsp;goal : string,\
+  &emsp;resultType : string }, ...] }
+  
+### GET /groups/{groupId}/personal-habits - получить все групповые привычки с индивидуальным зачётом
+
+- **response**:\
+  { habits:\
+  &emsp;[ { id : uuid,\
+  &emsp;name : string,\
+  &emsp;periodicity :\
+  &emsp;&emsp;{ type : string,\
+  &emsp;&emsp;value : number },\
+  &emsp;goal : string,\
+  &emsp;resultType : string }, ...] }
+
+### GET /groups/{groupId}/common-habits/{habitId} - получить групповую привычку с общим зачетом по id
+
+- **response**:\
+  { id : uuid,\
+  name : string,\
+  description : string,\
+  tags: [ string, ... ],\
+  periodicity :\
+  &emsp;{ type : string,\
+  &emsp;value : number },\
+  goal : string,\
+  resultType : string,\
+  isTemplated : bool,\
+  marks :\
+  &emsp;[ { id : uuid,\
+  &emsp;timestamp : dateTime,\
+  &emsp;result : { value : string,\
+  &emsp;&emsp;comment : string} }, \
+  &emsp;{ id: uuid,\
+  &emsp;timestamp : dateTime,\
+  &emsp;result : null } , ...] } 
+
+### GET /groups/{groupId}/personal-habits/{habitId} - получить групповую привычку с индивидуальным зачетом по id
+
+- **response**:\
+  { name : string,\
+  description : string,\
+  tags: [ string, ... ],\
+  periodicity : \
+  &emsp;{ type : string,\
+  &emsp;value : number },\
+  goal : string,\
+  resultType : string,\
+  isTemplated : bool,\
+  marks :\
+  &emsp;[ { timestamp : dateTime,\
+  &emsp;personalMarks :\
+  &emsp;&emsp;[ { id : uuid,\
+  &emsp;&emsp;&emsp;userId : uuid,\
+  &emsp;&emsp;&emsp;result : { value : string,\
+  &emsp;&emsp;&emsp;&emsp;comment : string} }, \
+  &emsp;&emsp;&emsp;{ id: uuid,\
+  &emsp;&emsp;&emsp;userId : uuid,\
+  &emsp;&emsp;&emsp;result : null}, ...] }, ...] }
+
+### POST /groups/{groupId}/common-habits - создать групповую привычку с общим зачетом
+
+#### по шаблону:
+- **query**:\
+  templateId : uuid
+- **body**:\
+  { }
+- **response**:\
+  { id : uuid }
+
+#### с кастомными параметрами:
+- **body**:\
+  { name : string,\
+  description : string,\
+  tags: [ uuid, ... ],\
+  periodicity :\
+  &emsp;{ type : string,\
+  &emsp;value : number },\
+  goal : string,\
+  resultType : string } 
+- **response**:\
+  { id : uuid }
+
+### POST /groups/{groupId}/personal-habits - создать групповую привычку с индивидуальным зачетом
+
+#### по шаблону:
+- **query**:\
+  templateId : uuid
+- **body**:\
+  { }
+- **response**:\
+  { id : uuid }
+
+#### с кастомными параметрами:
+- **body**:\
+  { name : string,\
+  description : string,\
+  tags: [ uuid, ... ],\
+  periodicity :\
+  &emsp;{ type : string,\
+  &emsp;value : number },\
+  goal : string,\
+  resultType : string } 
+- **response**:\
+  { id : uuid }
+
+### GET /groups/{groupId}/common-habits/{habitId}/statistics - получить статистику для групповой шаблонной привычки с общим зачетом
+
+- **response**:\
+  { value : number }
+
+### GET /groups/{groupId}/personal-habits/{habitId}/statistics - получить статистику для групповой привычки с индивидуальным зачетом
+
+- **response**:\
+  { value : number }
