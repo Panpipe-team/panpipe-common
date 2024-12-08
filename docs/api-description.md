@@ -94,7 +94,7 @@ Panpipe API
 - **query**:\
   templateId : uuid
 - **response**:\
-  { habitId : uuid }
+  { id : uuid }
 
 #### с кастомными параметрами:
 - **body**:\
@@ -106,7 +106,12 @@ Panpipe API
   goal : string,\
   resultType : string } }
 - **response**:\
-  { habitId : uuid }
+  { id : uuid }
+
+### GET /users/habits/{habitId}/statistics - получить статистику для шаблонной привычки
+
+- **response**:\
+  { value : number }
 
 # Habits
 
@@ -155,7 +160,7 @@ Panpipe API
 
 - **response**:\
   { groups:\
-  &emsp;[ { groupId : uuid,\
+  &emsp;[ { id : uuid,\
   &emsp;name : string }, ...] }
 
 ### POST /groups - создать группу
@@ -192,15 +197,22 @@ Panpipe API
 ### GET /groups/{groupId}/common-habits/{habitId} - получить групповую привычку с общим зачетом по id
 
 - **response**:\
-  { habits: \
-  &emsp;[ { habitId : uuid,\
-  &emsp;name : string,\
-  &emsp;description : string,\
-  &emsp;periodicity :\
-  &emsp;&emsp;{ type : string,\
-  &emsp;&emsp;value : number },\
-  &emsp;goal : string,\
-  &emsp;resultType : string }, ...] }
+  { name : string,\
+  description : string,\
+  periodicity : \
+  &emsp;{ type : string,\
+  &emsp;value : number },\
+  goal : string,\
+  resultType : string,\
+  isTemplated : bool,\
+  marks :\
+  &emsp;[ { id : uuid,\
+  &emsp;timestamp : dateTime,\
+  &emsp;result : { value : string,\
+  &emsp;&emsp;comment : string} }, \
+  &emsp;{ id: uuid,\
+  &emsp;timestamp : dateTime,\
+  &emsp;result : null } , ...] }
 
 ### GET /groups/{groupId}/personal-habits/{habitId} - получить групповую привычку с индивидуальным зачетом по id
 
@@ -250,7 +262,7 @@ Panpipe API
 - **query**:\
   templateId : uuid
 - **response**:\
-  { habitId : uuid }
+  { id : uuid }
 
 #### с кастомными параметрами:
 - **body**:\
@@ -262,4 +274,9 @@ Panpipe API
   goal : string,\
   resultType : string } }
 - **response**:\
-  { habitId : uuid }
+  { id : uuid }
+
+### GET /groups/{groupId}/habits/{habitId}/statistics - получить статистику для групповой привычки с индивидуальным зачетом
+
+- **response**:\
+  { value : number }
