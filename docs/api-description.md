@@ -190,7 +190,7 @@ Panpipe API
 ### POST /groups/{groupId}/participants - добавить участника в группу по id
 
 - **body**:\
-  { userId : guid }
+  { userId : uuid }
 - **response**: {}
 
 ### DELETE /groups/{groupId}/participants - выйти из группы
