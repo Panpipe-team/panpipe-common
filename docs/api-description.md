@@ -156,8 +156,6 @@ Panpipe API
 - **query**:\
   *name : string,\
   *description : string,\
-  *periodicityType: string,\
-  *periodicityValue: positiveInteger,\
   *goal : string
 - **response**: {}
 
