@@ -93,8 +93,7 @@ Panpipe API
 #### по шаблону:
 - **query**:\
   templateId : uuid
-- **body**:\
-  { }
+- **body** - не пустое, а отсутствует!
 - **response**:\
   { id : uuid }
 
@@ -269,8 +268,7 @@ Panpipe API
 #### по шаблону:
 - **query**:\
   templateId : uuid
-- **body**:\
-  { }
+- **body** - не пустое, а отсутствует!
 - **response**:\
   { id : uuid }
 
@@ -292,8 +290,7 @@ Panpipe API
 #### по шаблону:
 - **query**:\
   templateId : uuid
-- **body**:\
-  { }
+- **body** - не пустое, а отсутствует!
 - **response**:\
   { id : uuid }
 
