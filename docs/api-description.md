@@ -166,7 +166,7 @@ Panpipe API
   { name : string,\
   participants :\
   &emsp;[ { userId : uuid,\
-  &emsp;name : string }\, ...] }
+  &emsp;name : string, login : string }\, ...] }
 
 ### GET /groups - получить все группы пользователя
 
