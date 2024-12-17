@@ -52,7 +52,7 @@ Panpipe API
 
 #### про текущего пользователя:
 - **response**:\
-  { id : uuid,\
+  { userId : uuid,\
   login: string,\
   name : string }
 
@@ -61,7 +61,7 @@ Panpipe API
   login : string
 
 - **response**:\
-  { id : uuid,\
+  { userId : uuid,\
   login: string,\
   name : string }
 
