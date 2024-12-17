@@ -48,11 +48,21 @@ Panpipe API
   { login: string,\
   name : string }
 
-### GET /users - найти пользователя по логину
-- **query** :\
-  login : string
+### GET /users - получить информацию про пользователя
+
+#### про текущего пользователя:
 - **response**:\
   { id : uuid,\
+  login: string,\
+  name : string }
+
+#### найти пользователя по логину:
+- **query** :\
+  login : string
+
+- **response**:\
+  { id : uuid,\
+  login: string,\
   name : string }
 
 ### GET /users/habits - получить все привычки пользователя
